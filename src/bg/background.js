@@ -1,7 +1,10 @@
 chrome.runtime.onMessage.addListener(function (msg, sender) {
   if ((msg.from === 'content') && (msg.subject === 'showAction')) {
+
     chrome.tabs.query({
-      active: true
+      active: true,
+      status: 'complete',
+      url: 'https://qa4.apps.tax/*'
     }, function (tabs) {
       chrome.pageAction.show(tabs[0].id);
       chrome.pageAction.setPopup({
@@ -9,12 +12,13 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
         popup: 'src/popup/popup.html'
       });
     });
-  }
-  else if ((msg.from === 'content') && (msg.subject === 'hideAction')) {
+  } else if ((msg.from === 'content') && (msg.subject === 'hideAction')) {
     chrome.tabs.query({
-      active: true
+      active: true,
+      status: 'complete',
+      url: 'https://qa4.apps.tax/*'
     }, function (tabs) {
-      chrome.pageAction.hide(tabs[0].id);      
+      chrome.pageAction.hide(tabs[0].id);
     });
   }
 });
