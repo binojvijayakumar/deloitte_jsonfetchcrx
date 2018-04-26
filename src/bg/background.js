@@ -1,17 +1,13 @@
 chrome.runtime.onMessage.addListener(function (msg, sender) {
-  if ((msg.from === 'content') && (msg.subject === 'showBadge')) {
-    chrome.browserAction.setBadgeText({ "text": 'OK' });
-
+  if ((msg.from === 'content') && (msg.subject === 'showAction')) {
     chrome.tabs.query({
-      active: true,
-      currentWindow: true
+      active: true
     }, function (tabs) {
-      chrome.browserAction.setPopup({ tabId: tabs[0].id, popup: 'src/popup/popup.html' });
+      chrome.pageAction.show(tabs[0].id);
+      chrome.pageAction.setPopup({
+        tabId: tabs[0].id,
+        popup: 'src/popup/popup.html'
+      });
     });
-
   }
-});
-
-chrome.browserAction.onClicked.addListener(function (tab) {
-  alert('Taxportal not deteected.');
 });

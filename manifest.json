@@ -16,19 +16,18 @@
     ],
     "persistent": false
   },
-  "browser_action": {
+  "page_action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "Fetch JSON data from Deloitte TaxPortal site."  
+    "default_title": "Fetch JSON data from Deloitte TaxPortal site."
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://www.google.co.in/*"
-      ],
-      "js": [
-        "js/content.js"
-      ],
-      "run_at": "document_end"
-    }
-  ]
+  "content_scripts": [{
+    "matches": [
+      "https://formsqa4.apps.tax/*"
+    ],
+    "js": [
+      "js/content.js"
+    ],
+    "run_at": "document_end",
+    "all_frames": true
+  }]
 }

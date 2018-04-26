@@ -2,20 +2,25 @@
 chrome.runtime.onMessage.addListener(function (msg, sender, response) {
     // First, validate the message's structure
     if ((msg.from === 'popup') && (msg.subject === 'FetchJSON')) {
-        // Collect the necessary data 
-        var domInfo = {
-            total: document.querySelectorAll('*').length,
-            inputs: document.querySelectorAll('input').length,
-            buttons: document.querySelectorAll('button').length
-        };
-
         // Directly respond to the sender (popup), 
         // through the specified callback */
-        response(domInfo);
+        response(portalJSONDataCRX);
     }
 });
 
-chrome.runtime.sendMessage({
-    from: 'content',
-    subject: 'showBadge'
+var portalJSONDataCRX;
+var eventMethodCRX = window.addEventListener ? 'addEventListener' : 'attachEvent';
+var eventerCRX = window[eventMethodCRX];
+var messageEventCRX = eventMethodCRX == 'attachEvent' ? 'onmessage' : 'message';
+eventerCRX(messageEventCRX, function (e) {
+    if (e.data == 'SaveAppForm' && e.data == 'SaveAsPdf') {
+        return;
+    } else {
+        portalJSONDataCRX = e.data;
+
+        chrome.runtime.sendMessage({
+            from: 'content',
+            subject: 'showAction'
+        });
+    }
 });
