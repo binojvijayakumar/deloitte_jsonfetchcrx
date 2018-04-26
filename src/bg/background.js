@@ -6,6 +6,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
       status: 'complete',
       url: 'https://qa4.apps.tax/*'
     }, function (tabs) {
+      if (!tabs) return;
       chrome.pageAction.show(tabs[0].id);
       chrome.pageAction.setPopup({
         tabId: tabs[0].id,
@@ -18,6 +19,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
       status: 'complete',
       url: 'https://qa4.apps.tax/*'
     }, function (tabs) {
+      if (!tabs) return;
       chrome.pageAction.hide(tabs[0].id);
     });
   }
