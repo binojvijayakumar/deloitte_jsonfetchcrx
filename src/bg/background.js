@@ -10,4 +10,11 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
       });
     });
   }
+  else if ((msg.from === 'content') && (msg.subject === 'hideAction')) {
+    chrome.tabs.query({
+      active: true
+    }, function (tabs) {
+      chrome.pageAction.hide(tabs[0].id);      
+    });
+  }
 });

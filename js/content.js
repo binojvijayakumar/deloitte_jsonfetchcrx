@@ -8,6 +8,13 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
     }
 });
 
+window.onbeforeunload = function () {
+    chrome.runtime.sendMessage({
+        from: 'content',
+        subject: 'hideAction'
+    });
+}; 
+
 var portalJSONDataCRX;
 var eventMethodCRX = window.addEventListener ? 'addEventListener' : 'attachEvent';
 var eventerCRX = window[eventMethodCRX];
