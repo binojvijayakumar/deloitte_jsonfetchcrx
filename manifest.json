@@ -1,5 +1,5 @@
 {
-  "name": "Deloitte JSON Fetcher",
+  "name": "Deloitte Tax Portal JSON",
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "To fetch JSON data from Deloitte TaxPortal site.",
@@ -18,8 +18,7 @@
   },
   "browser_action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "Fetch JSON data from Deloitte TaxPortal site.",
-    "default_popup": "src/popup/popup.html"
+    "default_title": "Fetch JSON data from Deloitte TaxPortal site."  
   },
   "content_scripts": [
     {
